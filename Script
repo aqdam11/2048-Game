@@ -1,4 +1,4 @@
-pipeline {
+pipeline{
     agent any
     tools{
         jdk 'jdk17'
@@ -7,7 +7,6 @@ pipeline {
     environment {
         SCANNER_HOME=tool 'sonar-scanner'
     }
-
     stages {
         stage('clean workspace'){
             steps{
@@ -16,7 +15,7 @@ pipeline {
         }
         stage('Checkout from Git'){
             steps{
-                git 'https://github.com/SushantOps/2048-React-CICD.git'
+                git branch: 'master', url: 'https://github.com/Aj7Ay/2048-React-CICD.git'
             }
         }
         stage("Sonarqube Analysis "){
@@ -30,7 +29,7 @@ pipeline {
         stage("quality gate"){
            steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar_cred' 
+                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token' 
                 }
             } 
         }
@@ -71,6 +70,14 @@ pipeline {
                 sh 'docker run -d --name 2048 -p 3000:3000 aqdam/2048:latest'
             }
         }
-        
+        stage('Deploy to kubernets'){
+            steps{
+                script{
+                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                       sh 'kubectl apply -f deployment.yaml'
+                  }
+                }
+            }
+        }
     }
 }
