@@ -4,7 +4,8 @@ Steps:-
 Step 1: Create an ubuntu VM
 
 Step 2: Install Jenkins, Docker and Trivy. Create a Sonarqube Container using Docker.
-		2.1: Jenkins:
+		
+  		2.1: Jenkins:
 			 sudo apt upgrade -y
 			 sudo apt install -y openjdk-11-jdk. //install the latest java version
 			 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
@@ -48,7 +49,8 @@ Step 2: Install Jenkins, Docker and Trivy. Create a Sonarqube Container using Do
 			 sudo apt-get install trivy -y
 
 Step 3 — Install Plugins like JDK, Sonarqube Scanner, Nodejs, and OWASP Dependency Check
-		3.1: Go to manage jenkins -> Plugins -> Available Plugins. and install below plugins:
+		
+  		3.1: Go to manage jenkins -> Plugins -> Available Plugins. and install below plugins:
 			 Eclipse Temurin Installer
 			 Sonarqube Scanner
 			 NodeJS Plugin
@@ -58,7 +60,8 @@ Step 3 — Install Plugins like JDK, Sonarqube Scanner, Nodejs, and OWASP Depend
 		3.3: Create a job as 2048 Game, select pipeline and click OK
 
 Step 4 — Create a Pipeline Project in Jenkins using a Declarative Pipeline
-		4.1: Configure sonar server in Manage Jenkins
+		
+  		4.1: Configure sonar server in Manage Jenkins
 			 ip:9000
 			 Administration → Security → Users → Click on Tokens and Update Token → Give it a name → and click on Generate Token , Create a token with a name and generate.
 			 Copy Token
@@ -80,12 +83,14 @@ Step 4 — Create a Pipeline Project in Jenkins using a Declarative Pipeline
 			 Click Build
 
 Step 5 — Install OWASP Dependency Check Plugins
-		5.1: Go to Dashboard → Manage Jenkins → Plugins → OWASP Dependency-Check.
+		
+  		5.1: Go to Dashboard → Manage Jenkins → Plugins → OWASP Dependency-Check.
 		5.2: Go to manage jenkins -> tools -> install Dependency Check(version dependency-check 6.5.1) // auto install from github.com
 
 
 Step 6 — Docker Image Build and Push
-		6.1: Goto Dashboard → Manage Plugins → Available plugins → Search for Docker and install these plugins
+		
+  		6.1: Goto Dashboard → Manage Plugins → Available plugins → Search for Docker and install these plugins
 			 Docker, Docker Commons, Docker pipeline, Docker API, docker-build-step
 		6.2: go to manage jenkins -> tools -> install Docker installations(version latest) //auto install from docker.com
 		6.3: Add Docker Hub Username and Password under Global Credentials
@@ -93,12 +98,14 @@ Step 6 — Docker Image Build and Push
 		6.4: After build now, you will see a new image is created in your docker hub
 
 Step 7 — Deploy the image using Docker
-		7.1: Now Run the container to see if the game coming up or not by adding below stage 
+		
+  		7.1: Now Run the container to see if the game coming up or not by adding below stage 
 			 Add the Deploy to container stage in script and run it
 		7.2: ip:3000 in your browser to check
 
 Step 8 — Kubernetes master and slave setup on Ubuntu (20.04)
-		8.1: Create two ubuntu VM, one for master and one for slave
+		
+  		8.1: Create two ubuntu VM, one for master and one for slave
 		8.2: Install kubectl in your jenkins vm
 			 sudo apt update
 			 sudo apt install curl -y
@@ -148,7 +155,8 @@ Step 8 — Kubernetes master and slave setup on Ubuntu (20.04)
 			  kubectl get svc 
 
 Step 9 — Access the Game on Browser.
-		9.1: ip of slave:service port
+		
+  		9.1: ip of slave:service port
 
 
 
